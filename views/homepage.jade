@@ -1,0 +1,98 @@
+extends ./layout
+
+block body
+  body.hold-transition.skin-blue.sidebar-mini(data-ng-app='app')
+    .wrapper
+      header.main-header
+        a.logo(href='#/')
+          span.logo-mini
+            b А
+          span.logo-lg Адміністрування
+        nav.navbar.navbar-static-top(role='navigation')
+          a.sidebar-toggle(data-toggle='offcanvas', role='button')
+            span.sr-only Навігація
+      aside.main-sidebar
+        section.sidebar
+          .user-panel
+            .pull-left.image
+              img.img-circle(src='/images/pretty_girl-128x128.png', alt='User Image')
+            .pull-left.info
+              p Віталій Бобров
+              // Status
+              a
+                i.fa.fa-circle.text-success
+                |  Онлайн
+          form.sidebar-form(action='#', method='get')
+            .input-group
+              input.form-control(type='text', name='q', placeholder='Пошук...')
+              span.input-group-btn
+                button#search-btn.btn.btn-flat(type='submit', name='search')
+                  i.fa.fa-search
+          ul.sidebar-menu
+            li.header ОСНОВНА НАВІГАЦІЯ
+            li.treeview
+              a(href='')
+                i.fa.fa-building
+                span Управління
+                i.fa.fa-angle-left.pull-right
+              ul.treeview-menu
+                li.treeview
+                  a(href='#admin/staff')
+                    span Персонал
+            li.treeview
+              a(href='')
+                i.fa.fa-users
+                span Споживачам
+                i.fa.fa-angle-left.pull-right
+              ul.treeview-menu
+                li.treeview
+                  a(href='#admin/recipes')
+                    span Рецепти
+                li.treeview
+                  a(href='#admin/menu')
+                    span Меню
+                li.treeview
+                  a(href='#admin/dishes')
+                    span Страви
+            li.treeview
+              a(href='')
+                i.fa.fa-book
+                span Довідники
+                i.fa.fa-angle-left.pull-right
+              ul.treeview-menu
+                li.treeview
+                  a(href='#/ingri')
+                    span Інгредієнти
+                li.treeview
+                  a(href='#admin/sections')
+                    span Розділи меню
+                li.treeview
+                  a(href='#admin/positions')
+                    span Посади
+            li.treeview
+              a(href='#admin/storage')
+                i.fa.fa-database
+                span Склад
+            li
+              a(href='#')
+                i.fa.fa-sign-out
+                span Вихід
+      .content-wrapper
+        section.content-header
+          h1
+            | Головна панель
+            small Панель управління
+          ol.breadcrumb
+            li
+              a(href='#')
+                i.fa.fa-dashboard
+                | Домівка
+                li.active Панель управління
+        section.content
+          div(data-ng-view="")
+      footer.main-footer
+        strong
+          | Copyright © 2016 
+          a(href='#admin') Eager Beaver
+          | .
+        |  Всі права захищені.

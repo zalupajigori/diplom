@@ -1,0 +1,32 @@
+
+   <md-dialog aria-label="New order" class="neworder md-block" flex="30" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Категории</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="close">
+          <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content class="md-padding min">
+      <md-input-container class="hidden">
+          <label>Код</label>
+          <input ng-model="category.id" class="ng-pristine ng-valid md-input ng-touched" aria-invalid="false" style="">
+      </md-input-container>
+
+      <md-input-container flex>
+          <label>Название категории</label>
+          <input ng-model="category.name" class="ng-pristine ng-valid md-input ng-touched" aria-invalid="false" style="">
+      </md-input-container>
+
+    </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised md-primary" data-ng-click="save()"><ng-md-icon icon="save" style="fill: white; margin-top:7px;" size="20"></ng-md-icon>Сохранить</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

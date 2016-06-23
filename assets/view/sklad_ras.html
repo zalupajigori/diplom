@@ -1,0 +1,43 @@
+<!-- Начало шапки -->
+<section layout="row" flex>
+  <md-sidenav ng-include="'view/header.html'" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-controller="MenuController">
+  </md-sidenav>
+  <md-content layout-padding layout-fill layout-gt-sm="column" flex>
+    <div layout-gt-sm="row">
+      <md-card flex="100">
+        <md-toolbar class="md-table-toolbar md-default">
+          <div class="md-toolbar-tools">
+            <span>Расход / Приход</span>
+            <div flex></div>
+          </div>
+        </md-toolbar>
+        <md-table-container>
+          <table md-table md-progress="promise1">
+            <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+              <tr md-row>
+                <th md-column md-order-by="title">
+                  <span>Дата</span>
+                </th>
+                <th md-column md-order-by="title">
+                  <span>Название</span>
+                </th>
+                <th md-column>
+                  <span></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="sklad in log.data" ng-class=" {'trgreen': sklad.type, 'trred':!sklad.type}">
+                <td md-cell class="col-lg-11">{{sklad.createdAt | date: 'dd.MM.yy HH:mm'}}</td>
+                <td md-cell class="col-lg-11">{{sklad.ingri.title}}</td>
+                <td md-cell class="col-lg-11">{{sklad.sum}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </md-card>
+    </div>
+  </md-content>
+</section>
+
+<!-- Конец контента -->

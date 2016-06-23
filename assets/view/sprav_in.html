@@ -1,0 +1,107 @@
+<section layout="row" flex>
+    <md-content layout-padding layout-fill layout-gt-sm="row" layout-align="start start" flex>
+            <md-card flex="30">
+              <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                  <span>Список категорий</span>
+                  <div flex></div>
+                  <md-button data-ng-click="add_category()" class="but-sm" aria-label='add_cat1'>
+                    <ng-md-icon class="button-ico" icon="add_circle_outline" style="fill: black;"></ng-md-icon>
+                  </md-button>
+                </div>
+              </md-toolbar>
+              <md-table-container flex>
+                <table md-table md-progress="promise1" md-row-select ng-model="selected">
+                  <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+                    <tr md-row>
+                      <th md-column md-order-by="name">
+                        <span>Название</span>
+                      </th>
+                      <th md-column>
+                        <span></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody md-body>
+                    <tr md-row ng-repeat="category in categories.data" md-select="category.id" md-on-select="filter" md-on-deselect ="filter">
+                      <td md-cell ng-click="editComment($event, category)">{{category.name}}</td>
+                      <td md-cell ng-click="del_cat(category)" class="act">
+                          <ng-md-icon class="button-ico" icon="delete" style="fill: black;"></ng-md-icon>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </md-table-container>
+            </md-card>
+
+          <md-card flex>
+            <md-toolbar class="md-table-toolbar md-default">
+              <div class="md-toolbar-tools">
+                <span>Список ингридиентов</span>
+                <div flex></div>
+                <md-button data-ng-click="add()" class="but-sm" aria-label='add_cat'>
+                  <ng-md-icon class="button-ico" icon="add_circle_outline" >
+                  </ng-md-icon></md-button>
+              </div>
+            </md-toolbar>
+            <md-table-container>
+              <table md-table md-progress="promise">
+                <thead md-head md-order="query.order" md-on-reorder="reOrder">
+                  <tr md-row>
+                    <th md-column>
+
+                    </th>
+                    <th md-column md-order-by="title">
+                      <span>Название</span>
+                    </th>
+                    <th md-column md-order-by="size">
+                      <span>Объем</span>
+                    </th>
+                    <th md-column md-order-by="price">
+                      <span>Цена</span>
+                    </th>
+                    <th md-column>
+                      <span></span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody md-body>
+                  <tr md-row ng-repeat="ingridient in ingridients.data">
+                    <td md-cell class="center"><img ng-src="images/{{ingridient.image}}" class="smlogo"></td>
+                    <td md-cell>{{ingridient.title}}</td>
+                    <td md-cell>{{ingridient.size}}</td>
+                    <td md-cell>{{ingridient.price}} <span ng-if="ingridient.price_zak"> ({{ingridient.price_zak}})</span></td>
+                    <td md-cell>
+                      <md-menu md-position-mode="target-right target">
+                        <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                          <ng-md-icon icon="more_vert" style="fill: black" size="24"></ng-md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                          <md-menu-item>
+                            <md-button data-ng-click="update_item(ingridient)">
+                              <div layout="row">
+                                <p flex="">Изменить</p>
+                                <ng-md-icon icon="edit" style="fill: black" size="24"></ng-md-icon>
+                              </div>
+                            </md-button>
+                          </md-menu-item>
+                          <md-menu-item>
+                            <md-button data-ng-click="delete_inri(ingridient)">
+                              <div layout="row">
+                                <p flex="">Удалить</p>
+                                <ng-md-icon icon="delete" style="fill: black" size="24"></ng-md-icon>
+                              </div>
+                            </md-button>
+                          </md-menu-item>
+                        </md-menu-content>
+                      </md-menu>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </md-table-container>
+            <md-table-pagination md-Options='[10, 20, 50]' md-limit="query.limit" md-page="query.page" md-total="{{ingridients.count}}" md-on-paginate="onPaginate" md-page-select></md-data-table-pagination>
+          </md-card>
+
+  </md-content>
+</section>

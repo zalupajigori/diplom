@@ -1,0 +1,67 @@
+<md-dialog aria-label="New order" class="neworder" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Оплата</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="close">
+          <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content class="md-padding min">
+      <div layout-gt-sm="row">
+              <md-input-container class="hidden">
+                  <label>Код</label>
+                  <input ng-model="post.id" class="ng-pristine ng-valid md-input ng-touched" aria-invalid="false" style="">
+              </md-input-container>
+              <md-datepicker  flex class="md-block input_row" ng-model="oplata.date"   md-placeholder="Enter date"></md-datepicker>
+
+              <md-input-container flex class="md-block">
+                  <label for="input_19">Сумма</label>
+                  <input ng-model="oplata.suma" class="ng-pristine ng-valid md-input ng-touched" id="input_19" aria-invalid="false" style="">
+              </md-input-container>
+              <md-button type="button" flex="10" class="btn md-block btn-primary  md-raised md-primary pull-right" data-ng-click="opl()">
+                Оплатить
+              </md-button>
+</div>
+          <table md-table md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="reOrder">
+              <tr md-row>
+                <th md-column>
+                  <span>Дата</span>
+                </th>
+                <th md-column>
+                  <span>Остаток</span>
+                </th>
+                <th md-column>
+                  <span></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="oplata in oplatas">
+                <td md-cell>{{oplata.date | date: 'dd.MM.yy'}}</td>
+                <td md-cell>{{oplata.suma}}</td>
+                <td md-cell>
+                      <md-menu-item>
+                        <md-button data-ng-click="delete(naklav)">
+                          <div layout="row">
+                            <ng-md-icon icon="delete" style="fill: black" size="24"></ng-md-icon>
+                          </div>
+                        </md-button>
+                      </md-menu-item>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+    </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised md-primary" data-ng-click="save()"><ng-md-icon icon="save" style="fill: white; " size="20"></ng-md-icon>Сохранить</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

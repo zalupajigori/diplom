@@ -1,0 +1,54 @@
+<md-dialog aria-label="New order" class="neworder" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Накладная</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="close">
+          <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <div layout-gt-sm="row">
+      <div class="padding-10px">
+        Дата: {{naklav.date | date: 'dd.MM.yy'}}
+      </div>
+        <div class="md-block" flex></div>
+      <div class="padding-10px">
+        Поставщик: {{naklav.post.name}}
+      </div>
+    </div>
+    <table md-table md-progress="promise1">
+      <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+        <tr md-row>
+          <th md-column md-order-by="title">
+            <span>Название</span>
+          </th>
+          <th md-column md-order-by="price">
+            <span>Цена</span>
+          </th>
+          <th md-column md-order-by="amount">
+            <span>Количество</span>
+          </th>
+          <th md-column md-order-by="suma">
+            <span>Сумма</span>
+          </th>
+          <th md-column>
+            <span></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody md-body>
+        <tr md-row data-ng-repeat="it in naim">
+          <td md-cell>{{it.ingri.title}}</td>
+          <td md-cell>{{it.price}}</td>
+          <td md-cell>{{it.kolvo}}</td>
+          <td md-cell>{{it.suma}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="padding-10px zag_kokt">
+      <span>Сумма накладаной: {{naklav.suma}}</span>
+    </div>
+  </form>
+</md-dialog>

@@ -1,0 +1,36 @@
+<md-dialog aria-label="New order" class="neworder md-block" flex="60" ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{item.title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="close">
+          <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content class="md-padding min">
+        <div layout-gt-sm="row">
+          <div class="image-kokt">
+            <img ng-src="images/{{item.image}}">
+          </div>
+          <div flex="10"></div>
+          <ul class="list-group md-block" flex>
+            <li class="list-group-item list-group-item-info">Составляющие:</li>
+            <li class="list-group-item" data-ng-repeat="it in prop">
+              <span class="badge">{{it.kolvo}}</span>{{it.name.title}}
+            </li>
+          </ul>
+        </div>
+        <div class="zag_kokt">
+          <span>Описание:</span> {{item.op}}  </div>
+
+        <div class="zag_kokt">
+          <span>Коментарий:</span>{{item.koment}}
+        </div>
+        </div>
+      </md-content>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -1,0 +1,49 @@
+<!-- Начало шапки -->
+<section layout="row" flex>
+    <md-sidenav ng-include="'view/header.html'" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-controller="MenuController">
+
+    </md-sidenav>
+
+    <!-- Конец шапки -->
+    <!-- Начало контента -->
+    <md-content layout-padding layout-fill layout-gt-sm="row" layout-align="start start" flex>
+            <md-card flex>
+        <md-toolbar class="md-table-toolbar md-default">
+          <div class="md-toolbar-tools">
+            <span>Список поставщиков</span>
+            <div flex></div>
+            <md-button data-ng-click="add()" class="but-sm" aria-label='add_cat1'>
+              <ng-md-icon class="button-ico" icon="add_circle_outline" style="fill: black;"></ng-md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        <md-table-container>
+          <table md-table md-progress="promise1">
+            <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+              <tr md-row>
+                <th md-column md-order-by="name">
+                  <span>Название</span>
+                </th>
+                <th md-column>
+                  <span></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="post in posts.data">
+                <td md-cell class="td-width" ng-click="editComment($event, post)">{{post.name}}</td>
+                <td md-cell ng-click="delete(post)">
+                    <md-button class="but-sm pull-right" aria-label='del_cat'>
+                      <ng-md-icon class="button-ico" icon="delete" style="fill: black;"></ng-md-icon>
+                    </md-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </md-card>
+
+
+      </md-content>
+      </section>
+<!-- Конец контента -->

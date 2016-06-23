@@ -1,0 +1,31 @@
+<md-dialog aria-label="New order" class="neworder" ng-cloak flex="30">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Должники</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()" aria-label="close">
+          <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <md-content class="md-padding min">
+      <md-input-container class="hidden">
+          <label>Код</label>
+          <input ng-model="dolg.id" class="ng-pristine ng-valid md-input ng-touched" aria-invalid="false" style="">
+      </md-input-container>
+
+      <md-input-container flex class="md-block">
+          <label for="input_19">Должник</label>
+          <input ng-model="dolg.name" class="ng-pristine ng-valid md-input ng-touched" id="input_19" aria-invalid="false" style="">
+      </md-input-container>
+
+    </md-content>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button class="md-raised md-primary" data-ng-click="save()"><ng-md-icon icon="save" style="fill: white; margin-top:7px;" size="20"></ng-md-icon>Сохранить</md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

@@ -1,0 +1,156 @@
+<section layout="row" flex>
+  <md-content layout-padding layout-fill layout-gt-sm="row" layout-align="start start" flex layout="row">
+    <div flex="30">
+      <md-card>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex="90">
+            <md-autocomplete md-selected-item="search" md-selected-item-change="void()" md-search-text="searchText" md-items="item in querySearch(searchText)" md-item-text="item.title" md-min-length="0"  placeholder="Название коктейля">
+              <md-item-template>
+                <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.title}}</span>
+              </md-item-template>
+              <md-not-found>
+                "{{searchText}}" не был найден.
+              </md-not-found>
+            </md-autocomplete>
+
+          </md-input-container>
+
+          <md-menu md-position-mode="target-right target">
+            <md-button aria-label="Open menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <ng-md-icon icon="more_vert" style="fill: black" size="24"></ng-md-icon>
+            </md-button>
+            <md-menu-content width="4">
+<span class="padding-10px">Сортировка:</span>
+              <md-menu-item>
+                <md-button data-ng-click="update_item(ingridient)">
+                  <div layout="row">
+                    <p flex="">По алфавиту</p>
+                   </div>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button data-ng-click="delete_inri(ingridient)">
+                  <div layout="row">
+                    <p flex="">Последние</p>
+                     </div>
+                </md-button>
+              </md-menu-item>
+
+              <md-menu-item>
+                <md-button data-ng-click="update_item(ingridient)">
+                  <div layout="row">
+                    <p flex="">Топ за все время</p>
+                     </div>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button data-ng-click="delete_inri(ingridient)">
+                  <div layout="row">
+                    <p flex="">Топ за вечер</p>
+                     </div>
+                </md-button>
+              </md-menu-item>
+
+            </md-menu-content>
+          </md-menu>
+
+        </div>
+<div class="supa">
+        <div ng-repeat="kok in kokts" class="border-bottom" ng-click="buy(kok)" >
+    <span class="spa"> <img ng-src="images/{{kok.image}}" class="smlogo"> </span>      {{kok.title}} - <span ng-if="kok.visible">{{kok.price}}</span>  <span ng-if="!kok.visible">{{kok.price * 50}}</span>
+
+        </div>
+      </md-card>
+    </div></div>
+    <div flex layout="column">
+      <md-card class="padding-10px">
+        <div class="zag_kokt">
+          <div layout-gt-sm="row">
+            <span class="padding-10px" flex>Заказ {{zakaz.num}}</span>
+            <md-button flex="10" type="button" class=" md-block btn btn-primary pull-right" ng-click="new()">
+
+                <ng-md-icon icon="close" size="24" style="fill: white"></ng-md-icon>
+            </md-button>
+          </div>
+        </div>
+
+        <md-table-container flex>
+          <table md-table md-progress="promise1">
+            <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+              <tr md-row>
+                <th md-column md-order-by="title">
+                  <span>Наименование</span>
+                </th>
+                <th md-column md-order-by="title">
+                  <span>Количество</span>
+                </th>
+                <th md-column md-order-by="title">
+                  <span>Сумма</span>
+                </th>
+                <th md-column>
+                  <span></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="item in zakaz.buys">
+                <td md-cell>{{item.title}}</td>
+                <td md-cell ng-click="editComment($event, item)">{{item.kolvo}}</td>
+                <td md-cell>{{item.pidsuma}}</td>
+                <td md-cell ng-click="delete_buy(item)">
+                  <ng-md-icon class="button-ico" icon="delete" style="fill: black;"></ng-md-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+          <div layout-gt-sm="row" class="suma">
+            <div >Сумма:  {{zakaz.suma}}</div>
+          </div>
+          <div layout-gt-sm="row">
+            <md-button type="button" flex="10" class="btn md-block btn-primary  md-raised md-primary pull-right" data-ng-click="add_dolg()">
+              В долг
+            </md-button>
+            <div flex>
+
+            </div>
+            <md-button type="button" flex="20" class="btn md-block btn-primary  md-raised md-primary pull-right" data-ng-click="bezopl()"><ng-md-icon icon="save" style="fill: white; " size="20"></ng-md-icon>
+              Сохранить            </md-button>
+        <md-button flex="10" class="tn md-block btn-primary  md-raised md-primary pull-right" data-ng-click="save()">Оплатить</md-button>
+</div>
+      </md-card>
+      <md-card>
+        <md-table-container flex>
+          <table md-table md-progress="promise1">
+            <thead md-head md-order="query1.order" md-on-reorder="reOrder1">
+              <tr md-row>
+                <th md-column md-order-by="title">
+                  <span>Дата</span>
+                </th>
+                <th md-column md-order-by="title">
+                  <span>Номер</span>
+                </th>
+                <th md-column md-order-by="title">
+                  <span>Сумма</span>
+                </th>
+                <th md-column>
+                  <span></span>
+                </th>
+              </tr>
+            </thead>
+            <tbody md-body>
+              <tr md-row ng-repeat="item in orders.data" ng-class=" {'paid': item.paid}">
+                <td md-cell>{{item.createdAt | date: 'dd.MM.yy HH:mm' }}</td>
+                <td md-cell ng-click="load(item.id)">{{item.id}}</td>
+                <td md-cell>{{item.suma}}</td>
+                <td md-cell ng-click="delete_zak(item)">
+                  <ng-md-icon class="button-ico" icon="delete" style="fill: black;"></ng-md-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+      </md-card>
+    </div>
+  </md-content>
+</section>
